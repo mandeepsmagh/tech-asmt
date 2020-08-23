@@ -1,14 +1,12 @@
 name: Build Asp .net core app
-on:
-  push:
-    branches:
-      - master
+on: [push]
 jobs:
     build:
         runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v2
-        - uses: actions/setup-dotnet@v1
-          with:
-            dotnet-version: '3.1.x' # SDK Version to use; x will use the latest version of the 3.1 channel
-        - run: dotnet build ./matchtext/
+        steps:
+            - uses: actions/checkout@v2
+            - name: Setup .NET Core
+              uses: actions/setup-dotnet@v1
+            with:
+                dotnet-version: '3.1.x' # SDK Version to use; x will use the latest version of the 3.1 channel
+            - run: dotnet build ./matchtext/
